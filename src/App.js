@@ -180,28 +180,17 @@ const App = () => {
     setError(null);
 
     try {
-      // Fetch current weather and 5-day forecast in parallel
-      const [weatherResponse, forecastResponse] = await Promise.all([
-        axios.get(`https://api.openweathermap.org/data/2.5/weather`, {
-          params: {
-            q: `${city},${country}`,
-            appid: API_KEY,
-            units: unit
-          },
-          timeout: 10000
-        }),
-        axios.get(`https://api.openweathermap.org/data/2.5/forecast`, {
-          params: {
-            q: `${city},${country}`,
-            appid: API_KEY,
-            units: unit
-          },
-          timeout: 10000
-        })
-      ]);
+      // Fetch current weather
+      const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather`, {
+        params: {
+          q: `${city},${country}`,
+          appid: API_KEY,
+          units: unit
+        },
+        timeout: 10000
+      });
 
       const weatherData = weatherResponse.data;
-      const forecastData = forecastResponse.data;
 
       validateWeatherData(weatherData);
       
