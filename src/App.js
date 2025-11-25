@@ -206,7 +206,6 @@ const App = () => {
       validateWeatherData(weatherData);
       
       setWeatherData(weatherData);
-      setForecastData(forecastData);
       setRetryCount(0);
       setError(null);
 
@@ -258,7 +257,6 @@ const App = () => {
           canRetry: true
         });
         setWeatherData(null);
-        setForecastData(null);
       }
     } finally {
       setLoading(false);
@@ -283,7 +281,6 @@ const App = () => {
   const handleCountryChange = useCallback((e) => {
     setCountry(e.target.value);
     setWeatherData(null);
-    setForecastData(null);
     setError(null);
   }, []);
 
