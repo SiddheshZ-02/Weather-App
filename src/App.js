@@ -40,7 +40,6 @@ const App = () => {
   const [city, setCity] = useState(() => getLastSearch().city)
   const [country, setCountry] = useState(() => getLastSearch().country)
   const [weatherData, setWeatherData] = useState(null)
-  const [forecastData, setForecastData] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [retryCount, setRetryCount] = useState(0)
@@ -270,17 +269,8 @@ const App = () => {
   // Auto-fetch on input change removed to avoid fetching while typing
 
   // Utility functions
-  const formatTime = useCallback((timestamp, timezone) => {
-    const date = new Date((timestamp + timezone) * 1000);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  }, []);
-
   const getTemperatureUnit = useCallback(() => {
     return unit === 'metric' ? '°C' : '°F';
-  }, [unit]);
-
-  const getWindSpeedUnit = useCallback(() => {
-    return unit === 'metric' ? 'm/s' : 'mph';
   }, [unit]);
 
   const handleInputChange = useCallback((e) => {
